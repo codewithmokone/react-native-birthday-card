@@ -4,7 +4,8 @@ import { Text, View, TextInput, StyleSheet, Image, ImageBackground } from 'react
 
 function HomeScreen() {
 
-    const [name, setName] = useState([])
+    const [receiver, setReceiver] = useState([])
+    const [sender, setSender] = useState('')
     const [message, setMessage] = useState('')
 
     useEffect(() => {
@@ -19,14 +20,16 @@ function HomeScreen() {
             </View>
             <View style={styles.container}>
                 <View style={styles.inputSection}>
-                    <TextInput style={styles.textInput} placeholder='name' onBlur={(ev) => setName(ev.target.value)} />
+                    <TextInput style={styles.textInput} placeholder=' Sending to' onBlur={(ev) => setReceiver(ev.target.value)} />
+                    <TextInput style={styles.textInput} placeholder=' From who' onBlur={(ev) => setSender(ev.target.value)} />
                     <TextInput style={styles.textInput} placeholder='message' onBlur={(ev) => setMessage(ev.target.value)} />
                 </View>
             </View>
             <View style={styles.cardContainer} >
                 <View>
                     <ImageBackground source={require('../../assets/image.png')} resizeMode="cover" style={styles.image}>
-                        <Text style={styles.imageTopText}>Dear {name}</Text>
+                        <Text style={styles.toText}>Dear {receiver}</Text>
+                        <Text style={styles.fromText}>From {sender}</Text>
                         <Text style={styles.imageMiddleText}>Happy</Text>
                         <Text style={styles.imageBottomText}>Birthday</Text>
                         <Text style={styles.messageText}>{message}</Text>
@@ -89,10 +92,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    imageTopText: {
+    toText: {
         color: '#044C59',
         fontSize: 12,
-        marginTop: 40,
+        marginTop: 20,
+    },
+
+    fromText: {
+        color: '#044C59',
+        fontSize: 10,
+        marginTop: 10,
     },
 
     imageMiddleText: {
@@ -108,7 +117,6 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontSize: 18,
         fontFamily: 'roboto',
-        
     },
 
     messageText: {
