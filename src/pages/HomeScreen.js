@@ -28,7 +28,6 @@ function HomeScreen() {
                             style={styles.textInput}
                             placeholder='message'
                             onChangeText={(text) => setMessage(text)} />
-                        <Button title='Save'></Button>
                     </View>
                 </View>
                 <View style={styles.cardContainer} >
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 20,
         fontWeight: 'bold',
-        marginTop: 150,
+        marginTop: 120,
     },
 
     headingText: {
@@ -120,7 +119,6 @@ const styles = StyleSheet.create({
         color: '#E57556',
         marginTop: 15,
         fontSize: 18,
-        fontFamily: 'roboto',
         fontStyle: 'italic'
     },
 
@@ -128,11 +126,10 @@ const styles = StyleSheet.create({
         color: '#044C59',
         marginTop: 5,
         fontSize: 18,
-        fontFamily: 'roboto',
     },
 
     messageText: {
-        color: '044C59',
+        color: '#044C59',
         marginTop: 20,
         fontSize: 12,
     }
