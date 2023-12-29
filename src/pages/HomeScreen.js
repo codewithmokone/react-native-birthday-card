@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import image from '../../assets/image.png'
-import { Text, View, TextInput, StyleSheet, Image, ImageBackground } from 'react-native'
+import { Text, View, TextInput, StyleSheet, Image, ImageBackground, SafeAreaView, Button } from 'react-native'
 
 function HomeScreen() {
 
@@ -8,51 +8,64 @@ function HomeScreen() {
     const [sender, setSender] = useState('')
     const [message, setMessage] = useState('')
 
-    useEffect(() => {
-        console.log(name);
-        console.log(message);
-    }, [name, message])
-
     return (
-        <View style={styles.wrapper}>
-            <View style={styles.headingContainer}>
-                <Text style={styles.headingText}>Make a birthday card</Text>
-            </View>
-            <View style={styles.container}>
-                <View style={styles.inputSection}>
-                    <TextInput style={styles.textInput} placeholder=' Sending to' onBlur={(ev) => setReceiver(ev.target.value)} />
-                    <TextInput style={styles.textInput} placeholder=' From who' onBlur={(ev) => setSender(ev.target.value)} />
-                    <TextInput style={styles.textInput} placeholder='message' onBlur={(ev) => setMessage(ev.target.value)} />
+        <SafeAreaView>
+            <View style={styles.wrapper}>
+                <View style={styles.headingContainer}>
+                    <Text style={styles.headingText}>Make a birthday card</Text>
+                </View>
+                <View style={styles.container}>
+                    <View style={styles.inputSection}>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder=' Sending to'
+                            onChangeText={(text) => setReceiver(text)} />
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder=' From who'
+                            onChangeText={(text) => setSender(text)} />
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder='message'
+                            onChangeText={(text) => setMessage(text)} />
+                        <Button title='Save'></Button>
+                    </View>
+                </View>
+                <View style={styles.cardContainer} >
+                    <View>
+                        <ImageBackground source={require('../../assets/image.png')} resizeMode="cover" style={styles.image}>
+                            <Text style={styles.toText}>Dear {receiver}</Text>
+                            <Text style={styles.fromText}>From {sender}</Text>
+                            <Text style={styles.imageMiddleText}>Happy</Text>
+                            <Text style={styles.imageBottomText}>Birthday</Text>
+                            <Text style={styles.messageText}>{message}</Text>
+                        </ImageBackground>
+                    </View>
                 </View>
             </View>
-            <View style={styles.cardContainer} >
-                <View>
-                    <ImageBackground source={require('../../assets/image.png')} resizeMode="cover" style={styles.image}>
-                        <Text style={styles.toText}>Dear {receiver}</Text>
-                        <Text style={styles.fromText}>From {sender}</Text>
-                        <Text style={styles.imageMiddleText}>Happy</Text>
-                        <Text style={styles.imageBottomText}>Birthday</Text>
-                        <Text style={styles.messageText}>{message}</Text>
-                    </ImageBackground>
-                </View>
-            </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     wrapper: {
+        flex: 1,
         alignItems: 'center',
     },
 
     container: {
-        height: 100,
-        width: 200,
+        height: 200,
+        width: 300,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#E57556',
         borderWidth: 1,
         borderRadius: 15,
+        marginBottom: -500,
+    },
+
+    cardContainer: {
+        marginTop: 550,
     },
 
     inputSection: {
@@ -61,21 +74,20 @@ const styles = StyleSheet.create({
     },
 
     textInput: {
+        height: 35,
+        width: 200,
         backgroundColor: '#fff',
         borderWidth: 1,
         borderColor: 'gray',
         margin: 5
     },
 
-    cardContainer: {
-        marginTop: 50
-    },
-
     headingContainer: {
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginTop: 150,
     },
 
     headingText: {
@@ -86,8 +98,8 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         justifyContent: 'center',
-        width: 250,
-        height: 200,
+        width: 300,
+        height: 250,
         alignItems: 'center',
         justifyContent: 'center'
     },
